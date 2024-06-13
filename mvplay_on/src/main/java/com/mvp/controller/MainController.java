@@ -46,41 +46,7 @@ public class MainController {
 	@Autowired
 	private WishListService wishService;
 	
-	/*메인 페이지 이동
-	@GetMapping("/main")
-	public void mainPageGET() {
-		logger.info("mainPageGET()");
-	}*/
-	
-	/*리스트 데이터 받아오기
-	@RequestMapping("/main")
-	public void mainListGET(Criteria cri, Model model) throws Exception{
-		logger.info("movieListGET");
-		
-		//영화 리스트
-		List movieList = movieService.movieList(cri);
-		
-		if (!movieList.isEmpty()) {
-			model.addAttribute("movieList", movieList);
-		} else {
-			model.addAttribute("movieListCheck", "empty");
-			return;
-		}
-		
-	}*/
-	
-	/*
-	@RequestMapping(value="/main", method = RequestMethod.GET)
-	public void mainPageGET(Model model) {
-		
-		logger.info("메인 페이지 진입");
-		
-		model.addAttribute("");
-		model.addAttribute();
-		model.addAttribute();		
-		
-	}*/
-	
+
 	//기존 매핑
 	@RequestMapping("/main")
 	public void list(HttpServletRequest request) {
@@ -91,13 +57,7 @@ public class MainController {
 		
 	}
 	
-	/*
-	@GetMapping("/movie/movieDetail")
-	public void movieGetInfoGET(int movieId, Model model) throws JsonProcessingException {
-		logger.info("영화 정보를 보는 페이지에 접속 중..."+movieId);
-		model.addAttribute("movieInfo", movieService.movieGetDetail(movieId));
-	}*/
-	
+
 	@GetMapping(value = {"/movie/movieDetail", "/movie/purchaseDetail","/movie/moviePlay"})
 	public void movieGetInfoGET(HttpServletRequest request, int movieId, Model model) {
 		logger.info("movie Get Info");
@@ -156,16 +116,6 @@ public class MainController {
 		
 	}
 	
-	/*영화 디테일 페이지 접속
-	@RequestMapping(value = "/movie/movieDetail", method = RequestMethod.GET)
-	public void movieDetailGET(@RequestParam("movieId") int movieId, Model model) {
-		
-		logger.info("movieDetailGET");
-		
-		MovieVO vo = movieService.movieGetDetail(movieId);
-		model.addAttribute("movieDetail",vo);
-		
-	}*/
 	
 	@GetMapping("/movie/purchaseMain")
 	public void getPurchaseMain(HttpServletRequest request) throws Exception {

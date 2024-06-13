@@ -26,7 +26,6 @@ public class WishListController {
 	@Autowired
 	private WishListService wishService;
 	
-	
 	//보고싶어요 등록 
 	@ResponseBody
 	@PostMapping("/wish")
@@ -56,18 +55,11 @@ public class WishListController {
 				wishService.deleteWishList(wvo);
 				rttr.addFlashAttribute("wish_result", "보고싶어요에서 삭제되었습니다.");
 			}
-			
 			return new ResponseEntity<>("ok", HttpStatus.OK);
-			
 		}
-		
-		
-		
+
 		//로그인 하지 않은 경우 
 		return new ResponseEntity<>("로그인을 해주세요", HttpStatus.BAD_REQUEST);
-
-		
 	}
-	
 
 }

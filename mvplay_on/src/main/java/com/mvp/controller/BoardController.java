@@ -1,9 +1,4 @@
 package com.mvp.controller;
-
-
-
-
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mvp.model.AskBoardVO;
-import com.mvp.model.Criteria;
 import com.mvp.model.MemberVO;
 import com.mvp.service.AskBoardService;
 
@@ -50,8 +44,6 @@ public class BoardController {
 		}else {
 			model.addAttribute("listCheck", "empty");
 		}
-	    
-	    
 
 		/*
 		 * int total = askbservice.askboardGetTotal(cri); PageVO pageMake = new
@@ -60,17 +52,6 @@ public class BoardController {
 
 	    
 	}
-	/*게시판 목록 페이지 접속(페이징)
-	@GetMapping("/list")
-	public void AsksboardListGET(Model model, Criteria cri) {
-		log.info("askboardListGET");
-		model.addAttribute("list", askbservice.selectList(cri));
-		
-		int total = askbservice.boardGetTotal(cri);
-		PageVO pageMake = new PageVO(cri, total);
-		model.addAttribute("pageMaker", pageMake);
-	}
-	*/
 
 	/*게시판 등록 페이지 접속*/
 	@GetMapping("/enroll")
@@ -124,6 +105,5 @@ public class BoardController {
     	return "redirect:/board/ownList";
     }
     
-    /**/
     
 }

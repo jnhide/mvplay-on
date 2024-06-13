@@ -59,48 +59,7 @@ public class MovieController {
 		
 	}
 	
-	/*
-	//영화 디테일 확인
-	@GetMapping("movieDetail")
-	public void movieDetailGET(int movieId, Criteria cri, Model model)throws JsonProcessingException {
-		logger.info("영화 정보..." + movieId);
-		
-		ObjectMapper mapper = new ObjectMapper();
-		
-		model.addAttribute("cri",cri);
-		model.addAttribute("movieInfo",movieService.movieGetDetail(movieId));
-	
-	}
-	
-	//메인 페이지로 이동
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
-	public void mainPageGET() {
-		logger.info("메인 페이지 진입");
-	}	 
-	//영화 관리 페이지 접속
-	@RequestMapping(value = "movieManage", method = RequestMethod.GET)
-	public void goodsManageGET(Criteria cri, Model model) throws Exception{
-        logger.info("영화 등록 페이지 접속");
-	} 
 
-	//영화 등록 페이지로 이동
-	@RequestMapping(value = "movieEnroll", method = RequestMethod.GET)
-	public void movieEnrollGET(Model model) throws Exception {
-		logger.info("영화 등록 페이지 접속");
-	}
-	
-	//영화 수정 페이지로 이동
-	@PostMapping("/movieModify")
-	public String movieModifyPOST(MovieVO vo, RedirectAttributes rttr) {
-		logger.info("영화 수정"+vo);
-	}
-	
-	//영화 상세 정보 조회 페이지로 이동
-	@GetMapping({"/movieDetail", "/movieModify"})
-	public void movieGetInfoGET(int movieId, Criteria cri, Model model) throws JsonProcessingException {
-		logger.info("영화 상세 정보" + movieId);
-	}
-	*/
 	@GetMapping("/movie/movieSearch")
 	public void movieSearchGET(Criteria cri, Model model) throws Exception {
 		logger.info("영화 검색 페이지");

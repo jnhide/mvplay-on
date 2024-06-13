@@ -275,8 +275,6 @@ public class PurchaseController {
 			}
 			member.setUgrade(ugrade);
 
-			
-
 			try {
 				memberService.updateMemberGrade(member);
 				session.setAttribute("member", member);
@@ -293,43 +291,6 @@ public class PurchaseController {
 	}
 
 	
-	@PostMapping("/movie/subscribeMain")
-	public String PostsubscribeMainPage(HttpServletRequest request, Model model) {
-		String goods = (String) request.getSession().getAttribute("goods");
-		model.addAttribute("goods", goods);
-		System.out.println("포스트 subscribeMain");
-		return "redirect:/movie/subscribeMain"; // 구독 완료 후 리다이렉트할 페이지 경로를 지정합니다.
-	}
 
-	@GetMapping("/movie/PurchaseMain")
-	public void GetsPurchaseMainPage(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO) session.getAttribute("member");
-		logger.info("PurchaseMain");
-		List<MovieVO> movieSF = movieservice.movieSF_P();
-		request.setAttribute("movieSF", movieSF);
-		List<MovieVO> movieMystery = movieservice.movieMystery_P();
-		request.setAttribute("movieMystery", movieMystery);
-		List<MovieVO> movieCrime = movieservice.movieCrime_P();
-		request.setAttribute("movieCrime", movieCrime);
-		List<MovieVO> movieAnimation = movieservice.movieAnimation_P();
-		request.setAttribute("movieAnimation", movieAnimation);
-		List<MovieVO> movieDrama = movieservice.movieDrama_P();
-		request.setAttribute("movieDrama", movieDrama);
-		List<MovieVO> movieRomance = movieservice.movieRomance_P();
-		request.setAttribute("movieRomance", movieRomance);
-		List<MovieVO> movieThriller = movieservice.movieThriller_P();
-		request.setAttribute("movieThriller", movieThriller);
-		List<MovieVO> movieComedy = movieservice.movieComedy_P();
-		request.setAttribute("movieComedy", movieComedy);
-	}
-
-	@PostMapping("/movie/PurchaseMain")
-	public String PostPurchaseMainPage(HttpServletRequest request, Model model) {
-		String expiredDate = (String) request.getSession().getAttribute("expiredDate");
-		model.addAttribute("expiredDate", expiredDate);
-		System.out.println("포스트 PurchaseMain");
-		return "redirect:/movie/PurchaseMain"; // 구독 완료 후 리다이렉트할 페이지 경로를 지정합니다.
-	}
 
 }
