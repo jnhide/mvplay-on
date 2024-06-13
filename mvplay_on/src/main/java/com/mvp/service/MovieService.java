@@ -21,12 +21,6 @@ public interface MovieService {
 	//영화 ID&이름
 	public MovieVO getMovieIdTitle(int movieId);
 
-	/*영화 평점
-	public int movieGetRating();*/
-	
-	//지정 영화 이미지 정보 얻기
-	/*public List<> getPosterInfo(int movieId); */
-	
 	//영화 제목 검색
 	public List<MovieVO> searchMovie(Criteria cri);
 	
@@ -35,27 +29,6 @@ public interface MovieService {
 	
 	//영화 랭킹용
 	public List<MovieVO> movieRank();
-	
-	/* 이하 카테고리별 분류를 위한 임시 조치 */
-	//purchase용
-	public List<MovieVO> movieSF_P();
-	public List<MovieVO> movieMystery_P();
-	public List<MovieVO> movieCrime_P();
-	public List<MovieVO> movieAnimation_P();
-	public List<MovieVO> movieDrama_P();
-	public List<MovieVO> movieRomance_P();
-	public List<MovieVO> movieThriller_P();
-	public List<MovieVO> movieComedy_P();
-	
-	//subscribe용
-	public List<MovieVO> movieSF_S();
-	public List<MovieVO> movieMystery_S();
-	public List<MovieVO> movieCrime_S();
-	public List<MovieVO> movieAnimation_S();
-	public List<MovieVO> movieDrama_S();
-	public List<MovieVO> movieRomance_S();
-	public List<MovieVO> movieThriller_S();
-	public List<MovieVO> movieComedy_S();
 	
 	//영화 카테고리 출력
 	public List<MovieVO> selectCate1();

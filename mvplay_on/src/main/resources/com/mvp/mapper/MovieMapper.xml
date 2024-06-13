@@ -55,12 +55,10 @@
 	                  rownum as rn, movieId, movieTitle, cate1, movieDate, movieCheck, poster
 	              from movie 
 	              where
-	             
 	    ]]>         
 	            <if test="keyword != null">
 	                movieTitle like '%'||#{keyword}||'%' and
 	            </if>
-	            
 	    <![CDATA[        
 	             rownum <= #{pageNum}*#{amount}
 	            )
@@ -70,15 +68,11 @@
 	
 	<!-- 영화페이징 -->
 	<select id="getMovieTotal" resultType="int">
-      
           select count(*) from movie
-          
+
           <if test="keyword != null">
-          
              where movieTitle like '%' || #{keyword} || '%'
-          
           </if>
-          
       </select>
 	
 	<!-- 영화 랭킹(바뀌는 걸 보기 위해 임시로 별점 순으로 작성함) -->
@@ -95,224 +89,7 @@
 		order by rating desc
   	</select>
   	
-  	
-  	
-  	<!-- 카테고리별 리스트용 매퍼 -->
-  	<!-- purchase용 -->
-  	<select id="getMovieSF_P" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 3 and m.cate1 = 'SF'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieMystery_P" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 3 and m.cate1 = '미스터리'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieCrime_P" resultType="com.mvp.model.MovieVO">
-  		select
-		m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 3 and m.cate1 = '범죄'
-		order by movieId desc
-  	</select>
-  	
-  	<select id="getMovieAnimation_P" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 3 and m.cate1 = '애니메이션'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieDrama_P" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 3 and m.cate1 = '드라마'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieRomance_P" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 3 and m.cate1 = '로맨스'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieThriller_P" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 3 and m.cate1 = '스릴러'
-		order by rating desc
-  	</select>
-
-  	<select id="getMovieComedy_P" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 3 and m.cate1 = '코미디'
-		order by rating desc
-  	</select>
-  	
-  	
-  	
-  	<!-- 카테고리별 리스트용 매퍼 -->
-  	<!-- subscribe용 -->
-  	<select id="getMovieSF_S" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 1 and m.cate1 = 'SF'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieMystery_S" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 1 and m.cate1 = '미스터리'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieCrime_S" resultType="com.mvp.model.MovieVO">
-  		select
-		m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 1 and m.cate1 = '범죄'
-		order by movieId desc
-  	</select>
-  	
-  	<select id="getMovieAnimation_S" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 1 and m.cate1 = '애니메이션'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieDrama_S" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 1 and m.cate1 = '드라마'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieRomance_S" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 1 and m.cate1 = '로맨스'
-		order by rating desc
-  	</select>
-  	
-  	<select id="getMovieThriller_S" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 1 and m.cate1 = '스릴러'
-		order by rating desc
-  	</select>
-
-  	<select id="getMovieComedy_S" resultType="com.mvp.model.MovieVO">
-  		select m.movieId, m.movieTitle, m.poster, m.movieContent, 
-		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, 
-		m.rentalPrice, m.movieUrl, NVL(avg_rating.average_rating, 0) AS rating
-		from movie m
-		LEFT JOIN (
-		SELECT movieId, AVG(rating) AS average_rating
-		FROM rating GROUP BY movieId
-		)avg_rating ON m.movieId = avg_rating.movieId
-		where m.movieCheck = 1 and m.cate1 = '코미디'
-		order by rating desc
-  	</select>
-  	
+  
   	<select id="selectCate1" resultType="com.mvp.model.MovieVO">
   		SELECT DISTINCT cate1 FROM movie
   	</select>
