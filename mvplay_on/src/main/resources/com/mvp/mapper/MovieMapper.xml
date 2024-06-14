@@ -30,6 +30,7 @@
   	 
   	<!-- 영화 조회 -->
 	<select id="movieGetDetail" resultType="com.mvp.model.MovieVO">
+		<!--  -->
 		SELECT m.movieId, m.movieTitle, m.poster, m.movieContent,
 		m.movieDate, m.movieCheck, m.cate1, m.cate2, m.buyPrice, m.rentalPrice,
 		m.movieUrl, ROUND(NVL(avg_rating.average_rating, 0), 2) AS rating
@@ -39,6 +40,8 @@
         GROUP BY movieId
         ) avg_rating ON m.movieId = avg_rating.movieId
         WHERE m.movieId = #{movieId}
+        
+        
 	</select>  
 	
 	<select id="getMovieIdTitle" resultType="com.mvp.model.MovieVO">

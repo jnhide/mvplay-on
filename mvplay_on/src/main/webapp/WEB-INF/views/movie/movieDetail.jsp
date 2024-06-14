@@ -263,12 +263,7 @@ $(document).ready(function(){
 		//let wishRemoveIcon = document.querySelectorAll('#likeBtn');
 		wishIcon.classList.remove('unfilled')
 		wishIcon.classList.toggle('clicked');
-		
-	}
-
-
-
-	
+	}	
 }); //$(document).ready(function()
 
 		
@@ -276,40 +271,6 @@ function changeImage() {
 	var button = document.getElementById("likeBtn");
 	button.classList.toggle("clicked");
 }		 
-		
-		
-
-/* 리뷰쓰기 */
-//온클릭 버전 (차후 불필요하게 될 시 삭제)
-/*
- function replyWrite() {
-	const userId = '${member.userId}';
-	const movieId = '${movieInfo.movieId}';
-		
-	console.log("userId : "+${member.userId});
-	console.log("movieId 2 : "+${movieInfo.movieId});
-	
-	let popUrl = "/movie/replyWrite/" + userId + "?movieId=" + movieId;
-	console.log(popUrl);
-	let popOption = "width = 490px, height=400px, top=300px, left=300px, scrollbars=yes";
-	
-	window.open(popUrl,"리뷰 쓰기",popOption);
-}
-*/
-/*
-let moveForm = $('#moveForm');
-
-//영화 상세 페이지 이동
-$(".move").on("click", function(e){
-
-	e.preventDefault();
-	
-	moveForm.append("<input type='hidden' name='movieId' value='"+$(this).attr('href') + "'>");
-	moveForm.submit();
-
-});
-*/
-
 
 //버튼 눌러서 연결
 $(".reply_button_wrap").on("click", function(e){
@@ -393,10 +354,7 @@ function makeReplyContent(obj){
 			const pf = obj.pageInfo;
 			const userId = '${member.userId}';
 			const rating = '${movieInfo.rating}';
-			
-			//console.log("현재 받는 평점 : "+rating);
-			//console.log("댓글 정보들 : "+obj.regDate);
-			
+			 			
 			/* list */
 			
 			let reply_list = '';			
@@ -474,37 +432,7 @@ $(document).on('click', '.update_reply_btn', function(e){
 	window.open(popUrl,"리뷰 수정 버튼 눌림",popOption);			
 	 
 });	
-
-/*버튼 눌러서 연결
-$(".reply_button_wrap").on("click", function(e){
-	
-	e.preventDefault();
-	
-	const userId = '${member.userId}';
-	const movieId = '${movieInfo.movieId}';
-	
-	console.log("userId : "+${member.userId});
-	console.log("movieId 2 : "+${movieInfo.movieId});
-	
-	$.ajax({
-		data : {
-			userId : userId,
-			movieId : movieId
-		},
-		url : '/movie/check',
-		type : 'POST',
-		success : function(result){
-
-			if(result === '1'){
-				alert("이미 등록된 리뷰가 존재 합니다.")
-			} else if(result === '0'){
-				let popUrl = "/movie/replyWrite/" + userId + "?movieId=" + movieId;
-				console.log(popUrl);
-				let popOption = "width = 490px, height=360px, top=300px, left=300px, scrollbars=yes";
-				
-				window.open(popUrl,"리뷰 쓰기",popOption);					
-*/
-
+ 
 /* 리뷰 삭제 버튼 */
 $(document).on('click', '.delete_reply_btn', function(e){
 	e.preventDefault();
@@ -608,42 +536,11 @@ $(".btn").on('click', function(e){
 	const userId = '${member.userId}';
 	const movieId = '${movieInfo.movieId}';
 	
-	//console.log("userId for subscribe : "+${member.userId});
-	//console.log("movieId for subscribe : "+${movieInfo.movieId});
-	
 	if(userId === ""){
 		alert("로그인 후 이용하실 수 있습니다.");
 	}
 	
 });
-
-/*
-	$.ajax({
-		data : {
-			userId : userId,
-			movieId : movieId
-		},
-		url : '/reply/check',
-		type : 'POST',
-		success : function(result){
-
-			if(result === '1'){
-				alert("이미 등록된 리뷰가 존재 합니다.")
-			} else if(result === '0'){ 
-				
-				let popUrl = "/movie/replyWrite/" + userId + "?movieId=" + movieId;
-				console.log(popUrl);
-				let popOption = "width = 490px, height=360px, top=300px, left=300px, scrollbars=yes";
-				
-				window.open(popUrl,"리뷰 쓰기",popOption);					
-			/*}				
-			
-		}
-	});		
-
-	
-});
-*/
 
 
 </script>
